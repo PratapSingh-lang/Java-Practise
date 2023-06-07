@@ -1,0 +1,492 @@
+package com.arjuncodes.springemaildemo;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.DoubleSummaryStatistics;
+import java.util.List;
+import java.util.Map;
+import java.util.OptionalDouble;
+import java.util.Random;
+import java.util.function.Function;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
+
+import com.arjuncodes.springemaildemo.entity.Employee;
+
+@SpringBootApplication
+public class SpringEmailDemoApplication {
+
+	@Autowired
+	private EmailSenderService senderService;
+	
+	 static List<Employee> employees = new ArrayList<>();
+	    static {
+	        employees.add(
+	                new Employee("Shabbir", "Dawoodi", 5000.0, List.of("Project 1","Project 2"))
+	        );
+
+	        employees.add(
+	                new Employee("Nikhil", "Gupta", 6000.0, List.of("Project 1","Project 3"))
+	        );
+
+	        employees.add(
+	                new Employee("Shivam", "Kumar", 5500.0, List.of("Project 3","Project 4"))
+	        );
+
+	    }
+	
+	public static void main(String[] args) {
+		
+		
+//		Question: 
+//			Given a list of strings
+//			, write a Java 8 program to convert 
+//			all the strings to uppercase and concatenate them into a single string.
+
+		
+//		        List<String> strings = Arrays.asList("hello", "world", "java", "stream");
+//		       
+//		        String Res = strings.stream()
+//		        .map(String :: toUpperCase)
+//		        .reduce("", String :: concat);
+//		        
+////		        String Res = strings.stream()
+////		        .map(string -> string.toUpperCase())
+////		        .reduce("", (s1, s2) -> s1+s2);
+//
+//		
+//		        System.out.println("concatinated string is : "+ Res);
+		        
+//		Question: Given a list of strings, write a Java 8 program to find the longest string in the list.
+		
+//		        List<String> strings = Arrays.asList("Apple", "Banana", "Avocado", "Apricot"
+//		        		, "Grapes", "grfdddddddddd", "Aardvark");
+//
+//		        strings.stream()
+//		        		.max((s1, s2) -> Integer.compare(s1.length(), s2.length()))
+//		        		.ifPresent(System.out::println);
+		
+		        
+		        
+//		Question: Given a list of integers,
+//		write a Java 8 program to find the sum of 
+//		the squares of all odd numbers in the list.
+
+//		        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+//		        
+//		        int sum = numbers.stream()
+//		        .filter(num -> num % 2 != 0)
+//		        .mapToInt((num) -> num * num)
+//		        .sum();
+//		      
+//		      System.out.println("Sum is  : "+  sum);
+
+//		      int sum = numbers.stream()
+//		      .filter(number -> number % 2 != 0)
+//		      .map(num -> num * num)
+//		      .mapToInt(Integer :: intValue)
+//		      .sum();
+		
+//		Question: Given a list of strings,
+//		write a Java 8 program to find the average 
+//		length of the strings that start with the letter "A".
+
+//		        List<String> strings = Arrays.asList("Apple", "Banana", "Avocado", "Apricot", "Grapes", "Aardvark");
+//		        
+////		        OptionalDouble average = 
+//		        		strings.stream()
+//		        .filter(string -> string.charAt(0) == 'A')
+//		        .mapToDouble(String :: length)
+//		        .average().ifPresent(num -> System.out.println(num));
+		        
+//		        Question: Given a list of strings
+//		, write a Java 8 program to count the occurrences
+//		of each string in the list and display the result.
+//
+//		            	List<String> strings = Arrays.asList("Apple", "Banana", "Apple", "Orange", "Banana", "Apple");
+		            	
+//		            			Map<String, Long> stringOccurence =
+//		            					strings.stream()
+//		            	.collect(Collectors.groupingBy(s -> s , Collectors.counting()))
+//		            	.forEach((fruits, occurance) -> System.out.println("Fruits are : " + fruits 
+//		            			+ " And its Occurance : " + occurance));
+		            	
+//		            			stringOccurence.forEach((string, count) -> System.out.println("String is : " + string +
+//		            					" And Count Of Ocurance is : " + count) );
+		            			
+//		            	strings.stream()
+//		            	.mapToDouble(String :: length)
+//		            	.forEach(System.out::println);
+//		            	System.out.println("\n average is : \n");
+//		            	strings.stream()
+//		            	.mapToDouble(String :: length)
+//		            	.average().ifPresent(System.out::println);
+		
+//		Question: 
+//			Given a list of words, 
+//		write a Java 8 program to find the 
+//			count of words that start with the letter "A" 
+//		and have a length of exactly 4 characters.
+
+//		        List<String> words = Arrays.asList("Apple", "Ball", "Ant", "Cat", "Arch");
+//
+//		        long count = words.stream()
+//		        .filter(word -> word.charAt(0) == 'A' && word.length() == 4)
+//		        .count();
+//		        
+//		        System.out.println("Count is -> " + count);
+//		        
+////		        Question: 
+////		        	Given a list of integers, 
+////		        	write a Java 8 program to find the 
+////		        	square of each number in the list and then calculate their sum.
+//
+//		                List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+//		                
+//		               int sumOfSquares = numbers.stream()
+//		               .map(num -> num * num)
+//		               .mapToInt(Integer :: intValue)
+//		               .sum();
+//		               System.out.println("Sum of squares is : "  + sumOfSquares);
+//		               
+//		               Integer sumOdSquaresOfNumbers = numbers.stream()
+//		               .map(num -> num * num)
+//		               .reduce(0, Integer :: sum);
+//		               
+//		        System.out.println("Sum of squares of numbers are : "+ sumOdSquaresOfNumbers);
+		        
+		        
+//		        Question: 
+//		        	Given a list of integers,
+//		        	write a Java 8 program to find the 
+//		        	product of all the numbers in the list that are greater than 10.
+
+//		                List<Integer> numbers = Arrays.asList(5, 12, 8, 15, 20);
+//		                
+//		                Integer productOfTwoNumbers = numbers.stream()
+//		                .filter(number -> number > 10)
+//		                .reduce(1, (t, u) ->  t * u);
+//		                System.out.println("Product of numbers greater than 10 are : "+ productOfTwoNumbers);
+		
+//		Question: 
+//			Given a list of integers, 
+//			write a Java 8 program to 
+//			find the product of all the numbers greater than 5.
+
+//		        List<Integer> numbers = Arrays.asList(2, 3, 6, 8, 10, 4, 7);
+//		        
+//		        		numbers.stream()
+//		        .filter(num -> num > 5)
+//		        .reduce( (num1, num2) -> num1 * num2)
+//		        .ifPresent(num -> System.out.println("Product of numbers greater than 5: " + num));
+		        
+		        
+
+//		                numbers.stream()
+//		                        .filter(num -> num > 5)
+//		                        .reduce((num1, num2) -> num1 * num2)
+//		                        .ifPresent(product -> System.out.println("Product of numbers greater than 5: " + product));
+		       
+		        
+		        
+//		List<Double> numbers = Arrays.asList(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0);
+//
+////		 int sum = numbers.stream()
+////		 .filter(number -> number % 2 == 0)
+////		 .mapToInt(Integer :: intValue)
+////		 .sum();
+//		 
+////		 System.out.println("Sum of even Numbers are : " + sum);
+//		  
+//		Double sumOfEven = numbers.stream()
+//		.filter(num -> num % 2 ==0)
+//		.reduce(0.0, (num1, num2) -> num1+num2);
+//		System.out.println(sumOfEven + "     )))) sum of even ");
+//		
+//		 double doubleSum = numbers.stream()
+//		 .filter(number -> number %2 !=0)
+//		 .mapToDouble(Double :: doubleValue)
+//		 .sum();
+//		System.out.println(doubleSum);
+//				
+//				numbers.stream()
+////				.map
+//				.forEach
+//				(number -> {
+//					if(number %2 ==0)
+//						System.out.println(number);
+//				});
+//
+//				
+////				Question:
+////					Given a list of integers, write a program to find the maximum number from the list.
+//
+//					        List<Integer> number = Arrays.asList(10, 7, 13, 21, 4, 8, 16);
+////					        Integer maxIntegerFromList = 
+//					        		number.stream()
+//					        .max(Integer :: max).ifPresent(num -> System.out.println( " max number is : " +num));
+//					        		
+//					      number.stream()
+//					      .max(Integer :: max)
+//					      .ifPresent(System.out::println);
+//					      
+//					      System.out.println("\n sum of all numbers is  :   \n");
+//					      number.stream()
+//					      .max(Integer :: max)
+//					      .ifPresent(System.out::println);
+//					      
+////		   Question:
+////		   Given a list of strings, write a program to concatenate all the strings into a single string
+//		     List<String> strings = Arrays.asList("Hello", "World", "Java", "Streams");
+//		
+//		     String concatinatedString = strings.stream()
+//		     .reduce("AND", (s1, s2) -> s1+s2);
+//		     System.out.println(" Concatinated String is :  " +concatinatedString);
+//		     
+////		     Question:
+////		    	 Given a list of strings, write a program to find the average length of all strings in the list
+//		     
+//		     List<String> fruits = Arrays.asList("apple", "banana", "orange", "grape", "kiwi");
+//		     Integer sumOfLength = fruits.stream()
+//		     .map(string -> string.length())
+//		     .collect(Collectors.toList())
+//		     .stream()
+//		     .reduce((num1, num2) -> num1 +num2).get();
+//		     
+//		     System.out.println("sum is : " +sumOfLength);
+//		     System.out.println("Average is : " + sumOfLength/fruits.size());
+//		     
+//		     fruits.stream()
+//		     .mapToInt(String :: length)
+//		     .average().ifPresent(System.out::println);
+		     
+//Certainly! Here's another coding interview question related to streams in gJava:
+//
+//Question:
+//Given a list of strings, write a program to find the count of strings that have a length greater than 5.
+
+//				 List<String> strings = Arrays.asList("apple", "banana", "orange", "grape", "kiwi");
+//				 
+//				 long countgr5 = strings.stream()
+//				 .filter(string -> string.length() > 5)
+//				 .count();
+//				System.out.println(" Strings with length greater than 5 is : "+countgr5);
+				
+			
+//		System.out.println(sumEven);
+		
+//		.collect(Collectors.toList())
+//		.forEach(System.out::println);
+//		.stream()
+//		.mapToDouble(Double :: doubleValue)
+//		.sum();
+		 
+		/*
+		 * // SpringApplication.run(SpringEmailDemoApplication.class, args);
+		 * 
+		 * // System.out.
+		 * println("################ For each loop on list #################\n"); //
+		 * employees.forEach(employee ->System.out.println(employee)); //
+		 * System.out.println(); // // System.out.
+		 * println("################ For each loop on Stream #################\n"); //
+		 * employees.stream().forEach(employee -> System.out.println(employee)); //
+		 * System.out.println(); // // System.out.
+		 * println("################ increasing salary by 10 % of each employee #################\n"
+		 * ); // List<Employee> employeeWithIncreaseSalary = employees.stream() //
+		 * .map(employee -> new Employee( // employee.getFirstName(), //
+		 * employee.getLastName(), // employee.getSalary() * 1.10, //
+		 * employee.getProjects() // )).collect(Collectors.toList()); // //
+		 * employeeWithIncreaseSalary.stream().forEach(employee ->
+		 * System.out.println(employee)); // System.out.println(); // //
+		 * employees.stream() // .map(employee -> new Employee(employee.getFirstName(),
+		 * // employee.getLastName(), // employee.getSalary() * 1.10, //
+		 * employee.getProjects() //
+		 * )).collect(Collectors.toList()).forEach(System.out::println); // //
+		 * System.out.
+		 * println("Streams with ordered collection#########################\n"); // //
+		 * employeeWithIncreaseSalary.stream().forEachOrdered(employee ->
+		 * System.out.println(employee)); // System.out.println(); // // System.out.
+		 * println("Print only those employee whose salary is greater that 5000 \n"); //
+		 * // employees.stream() // .filter(employee -> employee.getSalary() > 5000) //
+		 * .forEach(System.out::println); // // System.out.println(); //
+		 * employees.stream().forEach(employee -> { // if(employee.getSalary() > 5000)
+		 * // System.out.println("Employee Object is :  " +employee ); // }); // //
+		 * System.out.println("Only fecth the first recored whose salry is increased\n"
+		 * ); // // employees.stream() // .map(employee -> new
+		 * Employee(employee.getFirstName(), // employee.getLastName(), //
+		 * employee.getSalary() * 1.10, // employee.getProjects())) //
+		 * .findFirst().stream().forEach(System.out::println); // // System.out.
+		 * println("###################   Flat Map operation ################# \n"); //
+		 * // String collect = // employees.stream() // .map(employee ->
+		 * employee.getProjects()) // .flatMap(string -> string.stream()) //
+		 * .collect(Collectors.joining(",")); //// .collect(Collectors.toList()) ////
+		 * .forEach(System.out::println); // // System.out.println(collect); // ////
+		 * System.out.println(maxSalariedEmployee); // //
+		 * System.out.println("\nMaximum Salried Employee's projects is below\n"); // //
+		 * employees.stream() //
+		 * .max(Comparator.comparing(Employee::getSalary)).get().getProjects().forEach(
+		 * System.out::println); // //// System.out.println("Short Circuit \n"); // ////
+		 * System.out.println("Sort Employee Object Based on Name And Salary"); // ////
+		 * System.out.println("Find total Salary of Employees \n"); //// //// ////
+		 * ////// employees.stream().forEach(employee -> { //////
+		 * if(employee.getSalary() > 5000) { //////// new Employee( ////////
+		 * employee.getFirstName(), //////// employee.getLastName(), ////////
+		 * employee.getProjects(), //////// employee.getSalary() * 1.10, ////////
+		 * employee.getProjects() //////// ) ////// System.out.println(employee); //////
+		 * } ////// }); ////// .collect(Collectors.toList()); //// System.out.println();
+		 * //// //// System.out.
+		 * println("Increase Salry of  only those employee whose salary is greater that 5000 \n"
+		 * ); //// //// List<Employee> incrementSalriedEmployee = employees.stream()
+		 * //// .filter(employee -> employee.getSalary() > 5000) //// .map(employee ->
+		 * new Employee( //// employee.getFirstName(), //// employee.getLastName(), ////
+		 * employee.getSalary() * 2.20, //// employee.getProjects() ////
+		 * )).collect(Collectors.toList()); ////
+		 * incrementSalriedEmployee.stream().forEachOrdered(employee ->
+		 * System.out.println(employee)); //// System.out.println(); //// //// ////
+		 * System.out.println("Only fecth the first recored whose salry is increased\n"
+		 * ); // // // Employee firstEmployee = employees.stream() // .map(employee ->
+		 * new Employee(employee.getFirstName(), // employee.getLastName(), //
+		 * employee.getSalary() * 1.10, //
+		 * employee.getProjects())).findFirst().orElseThrow(); // //
+		 * System.out.println(firstEmployee); // //
+		 * System.out.println("\n########## soreted in rev order \n"); //
+		 * employees.stream() // .sorted(Comparator.comparing(Employee::getSalary,
+		 * Comparator.reverseOrder())) //
+		 * .collect(Collectors.toList()).forEach(System.out::println); // //
+		 * System.out.println("\n drop While Usages \n"); // //
+		 * employees.stream().sorted(Comparator.comparing(Employee::getSalary)) //
+		 * .dropWhile(e ->
+		 * e.getFirstName().equalsIgnoreCase("Nikhil")).collect(Collectors.toList()).
+		 * forEach(System.out::println); // //// Employee firstEmployee =
+		 * employees.stream() //// .filter(employee -> employee.getSalary() > 50000)
+		 * //// .map(employee -> new Employee( //// employee.getFirstName(), ////
+		 * employee.getLastName(), //// employee.getSalary() * 2.45, ////
+		 * employee.getProjects() //// )) //// .findFirst() //// .orElse(null); ////
+		 * //// System.out.println(" First Employee is : ->  "+firstEmployee + "\n" );
+		 * //// //// System.out.
+		 * println("###################   Flat Map operation ################# \n");
+		 * //// //// List<String> listOfProjects = employees.get(0).getProjects(); ////
+		 * ////// String projects = //// //// List<String> projects = employees.stream()
+		 * //// .map(employee -> employee.getProjects()) //// .flatMap(strings ->
+		 * strings.stream()) ////// .collect(Collectors.joining(",")); ////
+		 * .collect(Collectors.toList()); //// System.out.println(projects); ////
+		 * System.out.println(); //// // System.out.println(" \n Short Circuit \n");
+		 * //// // //
+		 * employees.stream().skip(1).collect(Collectors.toList()).forEach(System.out::
+		 * println); // //
+		 * System.out.println(" \n Filter Operations ^^^^^^^^^^################### \n");
+		 * // // employees.stream().filter(employee -> employee.getSalary() > 5600) //
+		 * .map(employee -> new Employee( //// employee.setFirstName("Arjun"), ////
+		 * employee.setLastName("Killer"), // employee.getFirstName(), //
+		 * employee.getLastName(), // employee.getSalary(), // employee.getProjects() //
+		 * )).collect(Collectors.toList()).forEach(System.out::println); // // // //
+		 * System.out.println(" \n sum > 5500 \n"); // // Double sumgr5500 =
+		 * employees.stream().filter(employee -> employee.getSalary() > 5500) //
+		 * .map(Employee :: getSalary) // .reduce(0.0, Double :: sum); ////
+		 * .forEach(System.out::println); // // System.out.println(sumgr5500); // ////
+		 * List<Employee> shortCircuitData = employees.stream() //// .skip(1) ////
+		 * .limit(1) //// .collect(Collectors.toList()); ////
+		 * System.out.println(shortCircuitData); //// System.out.println(); //// ////
+		 * Stream.generate(Math::random).limit(5).forEach(data ->
+		 * System.out.println(data)); //// //////
+		 * Stream.generate(Math::random).forEach(data -> System.out.println(data)); ////
+		 * ////// Stream.generate(Math::random).forEach(data ->
+		 * System.out.println(data)); //// //// List<Employee>
+		 * sortedEmployeeBasedOnSalary = employees.stream() //// .sorted((o1,o2) ->
+		 * o1.getSalary() //// .compareTo(o2.getSalary())) ////
+		 * .collect(Collectors.toList()); //// ////
+		 * sortedEmployeeBasedOnSalary.forEach(employee ->
+		 * System.out.println(employee)); //// //// System.out.println(); ////
+		 * System.out.println("Sort Employee Object Based on Name And Salary"); ////
+		 * //// List<Employee> sortedBySalaryAndName =
+		 * employees.stream().sorted(Comparator //// .comparing(Employee::getSalary)
+		 * //// .thenComparing(Employee::getFirstName) ////
+		 * .thenComparing(Employee::getLastName) //// ) //// .toList(); ////
+		 * sortedBySalaryAndName.forEach(employee -> System.out.println(employee)); ////
+		 * //// System.out.println(); //// //// List<Employee>
+		 * sortedByFirstNameAndSalary = employees.stream().sorted(Comparator ////
+		 * .comparing(Employee::getFirstName) //// .thenComparing(Employee::getSalary)
+		 * //// ).collect(Collectors.toList()); ////
+		 * sortedByFirstNameAndSalary.stream().forEach(e -> System.out.println(e)); ////
+		 * System.out.println(); //// ////
+		 * System.out.println("Sort Employee Object Based on Name And Salary." //// +
+		 * " Salary sholud be in reverse Order"); //// System.out.println(); ////
+		 * List<Employee> sortByNameAndSalaryInReverseOrder = //// ////
+		 * employees.stream() //// .sorted(Comparator.comparing(Employee :: getSalary,
+		 * Comparator.reverseOrder()) //// .thenComparing(Employee:: getFirstName)) ////
+		 * .collect(Collectors.toList()); //// System.out.println(); ////
+		 * employees.stream() //// .sorted(Comparator.comparing(Employee :: getSalary,
+		 * Comparator.reverseOrder()) //// .thenComparing(Employee:: getFirstName)) ////
+		 * .collect(Collectors.toList()).forEach(employee ->
+		 * System.out.println(employee)); //// //// System.out.println(); //// ////
+		 * System.out.
+		 * println("Sort Employee Object Based on FirstName sholud be in reverse Order"
+		 * //// + " LastName   And Salary." //// +
+		 * " Salary sholud be in reverse Order"); //// System.out.println(); ////
+		 * employees.stream() //// .sorted(Comparator.comparing(Employee ::
+		 * getFirstName, Comparator.reverseOrder()) //// .thenComparing(Employee ::
+		 * getLastName) ////// .thenComparing(Employee :: getProjects ,
+		 * Comparator.reverseOrder()) //// .thenComparing(Employee :: getSalary,
+		 * Comparator.reverseOrder()) //// .thenComparing(Employee :: getSalary) ////
+		 * ).collect(Collectors.toList()).forEach(employee ->
+		 * System.out.println(employee)); //// //// System.out.println(); ////
+		 * System.out.println("Sort Employee Object Based on " //// +
+		 * " Salary sholud be in reverse Order"); //// System.out.println(); ////
+		 * employees.stream() //// .sorted(Comparator.comparing(Employee :: getSalary,
+		 * Comparator.reverseOrder())) //// .forEach(employee ->
+		 * System.out.println(employee)); //// //// System.out.println(); ////
+		 * System.out.println("Sort Employee Object Based on " //// +
+		 * " Salary sholud be in ascending Order"); //// System.out.println(); ////
+		 * employees.stream() //// .sorted(Comparator.comparing(Employee :: getSalary,
+		 * Comparator.reverseOrder()) //// .thenComparing(Employee ::
+		 * getSalary).reversed()) //// .collect(Collectors.toList()).forEach( //////
+		 * employee -> System.out.println(employee) //// System.out::println //// );
+		 * //// //// System.out.println(); //// Employee maxSalariedEmployee =
+		 * employees.stream() //// .max(Comparator.comparing(Employee :: getSalary))
+		 * //// .orElseThrow(null); //// ////
+		 * System.out.println("Maximum Salried Employee is below"); //// ////
+		 * System.out.println(maxSalariedEmployee); //// //// System.out.println(); ////
+		 * //// ////
+		 * System.out.println("Maximum Salried Employee's projects is below\n"); ////
+		 * //// employees.stream() //// .max(Comparator.comparing(Employee ::
+		 * getSalary)) //// .orElse(null).getProjects().forEach(System.out::println);
+		 * //// //// System.out.println(); //// ////
+		 * System.out.println("Find total Salary of Employees \n"); //// //// Double
+		 * sumOfSalary = employees.stream() //// .map(Employee :: getSalary) ////
+		 * .reduce(0.0, Double::sum); //// ////
+		 * System.out.println("Total Sum of Salary is :  "+sumOfSalary); ////
+		 * System.out.println(); //// // // Double salarySum = employees.stream() //
+		 * .map(Employee :: getSalary) // .reduce(0.0, Double::sum); //
+		 * System.out.println(salarySum +"   ::':::':':'::'::'::::::::::::::::::");
+		 * 
+		 */
+		
+		 
+		
+		
+	}
+	
+	@EventListener(ApplicationReadyEvent.class)
+	public void triggerMail()  {
+		
+		 Random random = new Random();
+	        
+	        // Generate random integer between 0 and 9 (inclusive)
+//	        int randomNumber = random.nextInt(10);
+//	        System.out.println("Random number: " + randomNumber);
+		int otp = random.nextInt(9999);
+		senderService.sendSimpleEmail("user1@testmail.com",
+				"Your Otp is :  "+String.valueOf(otp),
+				"Otp Genearation");
+
+	}
+}
