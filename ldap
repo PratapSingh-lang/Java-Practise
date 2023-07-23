@@ -1,0 +1,16 @@
+Here is the modified flow we discussed today with Ashutosh for LDAP flow.
+
+1.	When the user initiates Organizatoin LDAP eKYC, display the registered user email address
+       and registered mobile phone number from user management (read only fields) to initiate the LDAP eKYC.
+2.	When the user clicks next, the system shall authenticate the user in the following manner:
+a.	UI shall pass the registered email & phone number to backend to obtain LDAP user information. 
+b.	The backend shall check if the email and mobile number is valid for any user in LDAP database.
+    If a valid user is found in LDAP database matching both email and phone number, then send Email and mobile OTP. 
+    If the LDAP user is not found then respond with error message indicating eKYC failed.
+c.	The UI shall display OTP screen where the user shall enter Email and Mobile OTP.
+d.	If both the OTPs match then the user is authenticated for eKYC
+3.	Once the user is authenticated, the LDAP information obtained is displayed in UI 
+    (Employee ID, Name, Address, Email, Phone) along with consent check box. 
+    The user can complete the eKYC (by clicking submit button) only if the consent check box is checked. 
+4.	When eKYC is completed, the Account eKYC is created with active eKYC record for the user.
+
